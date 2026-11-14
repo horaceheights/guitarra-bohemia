@@ -136,7 +136,8 @@ export function BohemiaLogo() {
 
       {/* Creative Word Art: Guitarra Bohemia */}
       <div className="leading-none">
-        <div className="relative flex flex-wrap items-baseline gap-x-2">
+        <div className="inline-block">
+          <div className="relative flex flex-wrap items-baseline gap-x-2">
           {/* Guitarra with subtle 6-string backdrop */}
           <span className="relative inline-block text-xl sm:text-2xl font-black tracking-tight">
             <span
@@ -168,10 +169,12 @@ export function BohemiaLogo() {
               hemia
             </span>
           </span>
+          </div>
 
           {/* Mini Rosewood Fretboard + 6 Taut Metallic Guitar Strings + Bridge */}
           <svg
             viewBox="0 0 280 24"
+            preserveAspectRatio="xMinYMid meet"
             className="pointer-events-none mt-1 block h-5 w-full overflow-visible"
             aria-hidden="true"
           >
