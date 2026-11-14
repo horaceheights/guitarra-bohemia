@@ -22,9 +22,8 @@ export function BohemiaLogo() {
     >
       {/* Guitar-Pick (Púa) Sunburst Emblem with Interactive Acoustic Guitar */}
       <div
-        className={`relative flex h-14 w-14 shrink-0 items-center justify-center transition-transform duration-200 group-hover:scale-105 group-active:scale-95 ${
-          strumming ? 'scale-110 -rotate-3' : ''
-        }`}
+        className={`relative flex h-14 w-14 shrink-0 items-center justify-center transition-transform duration-200 group-hover:scale-105 group-active:scale-95 ${strumming ? 'scale-110 -rotate-3' : ''
+          }`}
       >
         <svg
           viewBox="0 0 72 72"
@@ -127,9 +126,8 @@ export function BohemiaLogo() {
             fill="#2dd4bf"
             fontSize="12"
             fontWeight="900"
-            className={`transition-all duration-300 ${
-              strumming ? '-translate-y-1.5 opacity-100' : 'opacity-75 group-hover:-translate-y-0.5 group-hover:opacity-100'
-            }`}
+            className={`transition-all duration-300 ${strumming ? '-translate-y-1.5 opacity-100' : 'opacity-75 group-hover:-translate-y-0.5 group-hover:opacity-100'
+              }`}
           >
             ♪
           </text>
@@ -171,37 +169,100 @@ export function BohemiaLogo() {
             </span>
           </span>
 
-          {/* 6 Guitar Strings sweeping across the bottom of the full wordmark */}
+          {/* Mini Rosewood Fretboard + 6 Taut Metallic Guitar Strings + Bridge */}
           <svg
-            viewBox="0 0 260 18"
-            className={`pointer-events-none mt-0.5 block h-3 w-full overflow-visible ${
-              strumming ? 'animate-string-vibrate' : ''
-            }`}
+            viewBox="0 0 280 24"
+            className="pointer-events-none mt-1 block h-5 w-full overflow-visible"
             aria-hidden="true"
           >
-            {[
-              { y: 2.5, w: 1.5, color: '#d97706', op: 0.9 },
-              { y: 5.0, w: 1.3, color: '#f59e0b', op: 0.85 },
-              { y: 7.5, w: 1.1, color: '#fbbf24', op: 0.85 },
-              { y: 10.0, w: 0.9, color: '#fde68a', op: 0.8 },
-              { y: 12.5, w: 0.75, color: '#fef3c7', op: 0.75 },
-              { y: 15.0, w: 0.65, color: '#2dd4bf', op: 0.75 },
-            ].map((s, i) => (
-              <path
-                key={i}
-                d={`M 2 ${s.y + 1.5} Q 125 ${s.y - 2} 246 ${s.y + 0.5}`}
-                fill="none"
-                stroke={s.color}
-                strokeWidth={s.w}
-                strokeLinecap="round"
-                opacity={s.op}
+            <defs>
+              <linearGradient id="miniNeck" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#2b1c14" />
+                <stop offset="75%" stopColor="#1f140e" />
+                <stop offset="100%" stopColor="#140d09" />
+              </linearGradient>
+            </defs>
+
+            {/* Rosewood Fingerboard Strip */}
+            <rect
+              x="4"
+              y="2"
+              width="256"
+              height="20"
+              rx="3"
+              fill="url(#miniNeck)"
+              stroke="#573d2c"
+              strokeWidth="0.9"
+            />
+
+            {/* Ivory Nut (Cejuela) on the left */}
+            <rect x="6" y="2" width="3.5" height="20" rx="1" fill="#fef3c7" />
+
+            {/* Fret Wires (Trastes) */}
+            {[34, 62, 90, 118, 146, 174, 202].map((fx) => (
+              <line
+                key={fx}
+                x1={fx}
+                y1="2.5"
+                x2={fx}
+                y2="21.5"
+                stroke="#9ca3af"
+                strokeWidth="1"
+                opacity="0.55"
               />
             ))}
-            {/* Mini Guitar Pick at the right end */}
+
+            {/* Pearl Inlay Dots */}
+            <circle cx="76" cy="12" r="1.6" fill="#fde68a" opacity="0.4" />
+            <circle cx="132" cy="12" r="1.6" fill="#fde68a" opacity="0.4" />
+            <circle cx="188" cy="12" r="1.6" fill="#fde68a" opacity="0.4" />
+
+            {/* Wooden Bridge (Puente) on the right */}
+            <rect
+              x="252"
+              y="2.5"
+              width="7"
+              height="19"
+              rx="1.5"
+              fill="#451a03"
+              stroke="#d97706"
+              strokeWidth="0.8"
+            />
+            <line x1="254.5" y1="3.5" x2="254.5" y2="20.5" stroke="#fef3c7" strokeWidth="1.2" />
+
+            {/* 6 Taut Guitar Strings (thick bronze bass -> thin steel treble) */}
+            <g className={strumming ? 'animate-string-vibrate' : undefined}>
+              {[
+                { y: 19.0, w: 1.5, color: '#d99b52' },
+                { y: 16.2, w: 1.3, color: '#dfa864' },
+                { y: 13.4, w: 1.1, color: '#e6b87c' },
+                { y: 10.6, w: 0.9, color: '#e5e7eb' },
+                { y: 7.8, w: 0.75, color: '#f3f4f6' },
+                { y: 5.0, w: 0.6, color: '#ffffff' },
+              ].map((s, idx) => (
+                <line
+                  key={idx}
+                  x1="6"
+                  y1={s.y}
+                  x2="255"
+                  y2={s.y}
+                  stroke={strumming ? '#fbbf24' : s.color}
+                  strokeWidth={s.w}
+                  opacity="0.92"
+                />
+              ))}
+            </g>
+
+            {/* Playful Mini Chord Dots (G Major shape!) */}
+            <circle cx="48" cy="16.2" r="2.6" fill="#f59e0b" stroke="#fef3c7" strokeWidth="0.7" />
+            <circle cx="76" cy="19.0" r="2.6" fill="#14b8a6" stroke="#ccfbf1" strokeWidth="0.7" />
+            <circle cx="76" cy="5.0" r="2.6" fill="#3b82f6" stroke="#dbeafe" strokeWidth="0.7" />
+
+            {/* Mini Pick at the Soundhole/Bridge end */}
             <path
-              d="M 252 2.5 C 256 2.5 258 6.5 256 10 C 254.5 13 252.8 14.2 252 14.5 C 251.2 14.2 249.5 13 248 10 C 246 6.5 248 2.5 252 2.5 Z"
-              fill="#fde68a"
-              stroke="#b45309"
+              d="M 269 5 C 273 5 275 9 273 13 C 271.5 16 269.8 17.5 269 18 C 268.2 17.5 266.5 16 265 13 C 263 9 265 5 269 5 Z"
+              fill="#fbbf24"
+              stroke="#fef3c7"
               strokeWidth="1"
             />
           </svg>
