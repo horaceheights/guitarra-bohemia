@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #110e0c;
+  --foreground: #f5efe6;
 }
 
 @theme inline {
@@ -12,15 +12,241 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body {
+  background: radial-gradient(circle at top center, #1e1712 0%, #110e0c 55%);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #171310;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a3028;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #54463a;
+}
+
+@keyframes stringVibrate {
+  0% {
+    transform: translateY(0px);
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.9));
+  }
+
+  15% {
+    transform: translateY(-2.2px);
+  }
+
+  30% {
+    transform: translateY(2.2px);
+  }
+
+  45% {
+    transform: translateY(-1.5px);
+  }
+
+  60% {
+    transform: translateY(1.5px);
+  }
+
+  75% {
+    transform: translateY(-0.8px);
+  }
+
+  90% {
+    transform: translateY(0.6px);
+  }
+
+  100% {
+    transform: translateY(0px);
+    filter: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-string-vibrate {
+  animation: stringVibrate 0.36s ease-out;
+}
+
+@keyframes micStringVibrate {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+    filter: drop-shadow(0 0 6px rgba(74, 222, 128, 0.9));
+  }
+
+  25% {
+    transform: translateY(-2.4px);
+  }
+
+  50% {
+    transform: translateY(2.4px);
+  }
+
+  75% {
+    transform: translateY(-1.4px);
+  }
+}
+
+.animate-string-vibrate-mic {
+  animation: micStringVibrate 0.14s linear infinite;
+}
+
+@keyframes pickSweepDown {
+  0% {
+    transform: translate(0px, var(--pick-from-y, 230px)) rotate(-18deg) scale(1.06);
+    opacity: 0.95;
+  }
+
+  45% {
+    transform: translate(-6px, calc((var(--pick-from-y, 230px) + var(--pick-to-y, 30px)) / 2)) rotate(0deg) scale(1.1);
+    opacity: 1;
+  }
+
+  85% {
+    transform: translate(0px, var(--pick-to-y, 30px)) rotate(14deg) scale(1);
+    opacity: 0.95;
+  }
+
+  100% {
+    transform: translate(2px, var(--pick-to-y, 30px)) rotate(10deg) scale(0.95);
+    opacity: 0.45;
+  }
+}
+
+@keyframes pickSweepUp {
+  0% {
+    transform: translate(0px, var(--pick-from-y, 30px)) rotate(16deg) scale(1.06);
+    opacity: 0.95;
+  }
+
+  45% {
+    transform: translate(-6px, calc((var(--pick-from-y, 30px) + var(--pick-to-y, 230px)) / 2)) rotate(-2deg) scale(1.1);
+    opacity: 1;
+  }
+
+  85% {
+    transform: translate(0px, var(--pick-to-y, 230px)) rotate(-14deg) scale(1);
+    opacity: 0.95;
+  }
+
+  100% {
+    transform: translate(2px, var(--pick-to-y, 230px)) rotate(-10deg) scale(0.95);
+    opacity: 0.45;
+  }
+}
+
+@keyframes pickPluckBass {
+  0% {
+    transform: translate(2px, var(--pick-from-y, 230px)) rotate(-10deg) scale(1.05);
+    opacity: 0.95;
+  }
+
+  45% {
+    transform: translate(-5px, var(--pick-to-y, 210px)) rotate(8deg) scale(1.16);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(2px, var(--pick-to-y, 210px)) rotate(2deg) scale(0.95);
+    opacity: 0.45;
+  }
+}
+
+@keyframes strumTrailFade {
+  0% {
+    opacity: 0.85;
+    stroke-dashoffset: 1;
+  }
+
+  50% {
+    opacity: 0.65;
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes bassRingPulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+@keyframes strumArrowsFlash {
+  0% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  65% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0.15;
+    transform: scale(0.96);
+  }
+}
+
+.animate-pick-down {
+  animation: pickSweepDown 0.17s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-pick-up {
+  animation: pickSweepUp 0.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-pick-bass {
+  animation: pickPluckBass 0.15s ease-out forwards;
+}
+
+.animate-strum-trail {
+  animation: strumTrailFade 0.24s ease-out forwards;
+}
+
+.animate-bass-ring {
+  animation: bassRingPulse 0.26s ease-out forwards;
+}
+
+.animate-strum-arrows {
+  animation: strumArrowsFlash 0.28s ease-out forwards;
+}
+
+@keyframes centerNoteBlink {
+  0% {
+    opacity: 0.85;
+    transform: scale(0.92);
+  }
+  25% {
+    opacity: 0.75;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+
+.animate-center-note-blink {
+  animation: centerNoteBlink 0.55s ease-out forwards;
 }
