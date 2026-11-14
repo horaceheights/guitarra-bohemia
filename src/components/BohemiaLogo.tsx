@@ -169,40 +169,45 @@ export function BohemiaLogo() {
             <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-amber-500 bg-clip-text text-transparent drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)]">
               hemia
             </span>
-
-            {/* Sweeping Guitar-Neck Swash + Mini Pick */}
-            <svg
-              viewBox="0 0 140 14"
-              className="pointer-events-none absolute -bottom-2 left-0 h-2.5 w-full overflow-visible"
-              aria-hidden="true"
-            >
-              <path
-                d="M 2 7 Q 68 1 130 6"
-                fill="none"
-                stroke="#f59e0b"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-              />
-              <path
-                d="M 10 10 Q 70 5 124 8.5"
-                fill="none"
-                stroke="#2dd4bf"
-                strokeWidth="1.1"
-                strokeLinecap="round"
-                opacity="0.7"
-              />
-              {/* Mini Guitar Pick at the tip */}
-              <path
-                d="M 133 2 C 136 2 137.5 5 136 7.5 C 135 9.5 133.5 10.5 133 10.8 C 132.5 10.5 131 9.5 130 7.5 C 128.5 5 130 2 133 2 Z"
-                fill="#fde68a"
-                stroke="#b45309"
-                strokeWidth="0.9"
-              />
-            </svg>
           </span>
+
+          {/* 6 Guitar Strings sweeping across the bottom of the full wordmark */}
+          <svg
+            viewBox="0 0 260 18"
+            className={`pointer-events-none mt-0.5 block h-3 w-full overflow-visible ${
+              strumming ? 'animate-string-vibrate' : ''
+            }`}
+            aria-hidden="true"
+          >
+            {[
+              { y: 2.5, w: 1.5, color: '#d97706', op: 0.9 },
+              { y: 5.0, w: 1.3, color: '#f59e0b', op: 0.85 },
+              { y: 7.5, w: 1.1, color: '#fbbf24', op: 0.85 },
+              { y: 10.0, w: 0.9, color: '#fde68a', op: 0.8 },
+              { y: 12.5, w: 0.75, color: '#fef3c7', op: 0.75 },
+              { y: 15.0, w: 0.65, color: '#2dd4bf', op: 0.75 },
+            ].map((s, i) => (
+              <path
+                key={i}
+                d={`M 2 ${s.y + 1.5} Q 125 ${s.y - 2} 246 ${s.y + 0.5}`}
+                fill="none"
+                stroke={s.color}
+                strokeWidth={s.w}
+                strokeLinecap="round"
+                opacity={s.op}
+              />
+            ))}
+            {/* Mini Guitar Pick at the right end */}
+            <path
+              d="M 252 2.5 C 256 2.5 258 6.5 256 10 C 254.5 13 252.8 14.2 252 14.5 C 251.2 14.2 249.5 13 248 10 C 246 6.5 248 2.5 252 2.5 Z"
+              fill="#fde68a"
+              stroke="#b45309"
+              strokeWidth="1"
+            />
+          </svg>
         </div>
 
-        <p className="mt-1.5 text-[11px] sm:text-xs text-stone-400">
+        <p className="mt-1 text-[11px] sm:text-xs text-stone-400">
           {APP_CONFIG.tagline}
         </p>
       </div>
