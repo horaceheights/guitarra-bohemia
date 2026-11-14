@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Compass, Ear, Guitar, Music2, Sparkles } from 'lucide-react';
-import { APP_CONFIG } from '@/lib/config';
+import { Compass, Ear, Guitar, Sparkles } from 'lucide-react';
+import { BohemiaLogo } from './BohemiaLogo';
 import {
   formatProgressionNotation,
   shouldUseFlats,
@@ -68,17 +68,7 @@ export function BohemiaApp() {
     <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-3 py-3 sm:px-6 sm:py-4 lg:px-8">
       {/* Studio Top Bar */}
       <header className="mb-3 sm:mb-4 flex flex-col gap-2.5 sm:gap-3 rounded-2xl border border-stone-800/90 bg-[#17120f]/95 px-4 py-3 sm:px-5 sm:py-3.5 shadow-lg sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 text-stone-950 shadow">
-            <Music2 className="h-6 w-6" />
-          </div>
-          <div>
-            <h1 className="text-lg font-extrabold tracking-tight text-stone-50 sm:text-xl">
-              {APP_CONFIG.name}
-            </h1>
-            <p className="text-xs text-stone-400">{APP_CONFIG.tagline}</p>
-          </div>
-        </div>
+        <BohemiaLogo />
 
         {/* Global Guitar Controls: Notation, Tuning, Capo */}
         <div className="flex flex-wrap items-center gap-2.5">
